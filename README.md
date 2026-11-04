@@ -40,7 +40,7 @@ See also [PyTorch installation guidance](https://pytorch.org/get-started/locally
 ## Run the complete demo
 
 ```bash
-uv run demo.py
+uv run examples/demo.py
 ```
 
 This trains on CUDA, generates a separate 180-frame sequence (6 seconds at 30 fps),
@@ -64,19 +64,19 @@ Existing nonempty output directories are rejected to protect previous runs.
 Reuse saved weights without retraining:
 
 ```bash
-uv run demo.py --checkpoint outputs/demo/model.pt --output outputs/reused
+uv run examples/demo.py --checkpoint outputs/demo/model.pt --output outputs/reused
 ```
 
 Try a different unseen object, or train for longer:
 
 ```bash
-uv run demo.py --checkpoint outputs/demo/model.pt --seed 42 --output outputs/new-object
-uv run demo.py --steps 800 --output outputs/longer-training
+uv run examples/demo.py --checkpoint outputs/demo/model.pt --seed 42 --output outputs/new-object
+uv run examples/demo.py --steps 800 --output outputs/longer-training
 ```
 
 An explicit CPU option is available for debugging (using the same installed
-PyTorch build): `uv run demo.py --device cpu --output outputs/cpu`.
-Use `uv run demo.py --help` for all arguments.
+PyTorch build): `uv run examples/demo.py --device cpu --output outputs/cpu`.
+Use `uv run examples/demo.py --help` for all arguments.
 
 ## Training: what the network learns
 
@@ -189,8 +189,8 @@ Reuse the trained weights and the exact saved input video:
 
 ```bash
 uv sync --locked
-uv run export_onnx.py
-uv run onnx_demo.py
+uv run examples/export_onnx.py
+uv run examples/onnx_demo.py
 xdg-open outputs/onnx_demo/tracked.mp4
 ```
 
@@ -203,3 +203,15 @@ but processing throughput is measured separately and is not necessarily faster.
 For the INT8 workflow, see the [ONNX quantization guide](docs/onnx-quantization.md).
 It explains dynamic quantization, CPU execution, accuracy checks, and how to
 compare the quantized model with the FP32 CUDA baseline.
+
+## Interactive feature tracking
+
+Train a checkpoint with the demo, then select a box on the first frame:
+
+```bash
+uv run examples/track_video.py --checkpoint outputs/demo/model.pt
+```
+
+Pass `--video PATH` to choose another video, and press `q` or Escape to quit.
+The red box encloses the selected features; it need not cover the whole object.
+The synthetic model may drift on real video.

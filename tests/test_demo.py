@@ -7,7 +7,7 @@ import cv2
 import numpy as np
 import torch
 
-from demo import (PATCH, SOURCE, TinySiamese, extract, export, ground_truth,
+from tiny_siam_cnn.demo import (PATCH, SOURCE, TinySiamese, extract, export, ground_truth,
                   rotate_crop, scene, select_points, track)
 
 

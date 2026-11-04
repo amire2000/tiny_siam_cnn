@@ -9,9 +9,9 @@ import cv2
 import numpy as np
 import torch
 
-import demo
-import onnx_demo
-from export_onnx import export_model
+from tiny_siam_cnn import demo
+from tiny_siam_cnn import onnx_demo
+from tiny_siam_cnn.export_onnx import export_model
 
 
 class OnnxTests(unittest.TestCase):
@@ -67,7 +67,7 @@ class BlockTorch(importlib.abc.MetaPathFinder):
         if fullname.split('.')[0] == 'torch':
             raise AssertionError('Runtime imported PyTorch')
 sys.meta_path.insert(0, BlockTorch())
-import onnx_demo
+from tiny_siam_cnn import onnx_demo
 import numpy as np
 session = onnx_demo.create_session(sys.argv[1], 'cpu')
 result = session.run(None, {'patches': np.zeros((1,1,21,21), dtype=np.float32)})

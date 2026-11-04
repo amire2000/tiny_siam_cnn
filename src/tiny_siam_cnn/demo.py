@@ -13,7 +13,7 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 
-from tracking_io import PATCH, SOURCE, POINTS, WIDTH, HEIGHT, export
+from .tracking_io import PATCH, SOURCE, POINTS, WIDTH, HEIGHT, export
 
 
 class TinySiamese(nn.Module):

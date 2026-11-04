@@ -10,7 +10,7 @@ import onnxruntime as ort
 import torch
 from torch import nn
 
-from demo import TinySiamese
+from .demo import TinySiamese
 
 
 def export_model(checkpoint, output):

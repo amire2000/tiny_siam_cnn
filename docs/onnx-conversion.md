@@ -38,7 +38,7 @@ The existing `outputs/demo/` contains `model.pt`, `input.mp4`, and `tracks.csv`.
 Reuse those files; no retraining is required. On a fresh checkout, create them:
 
 ```bash
-uv run demo.py
+uv run examples/demo.py
 ```
 
 This trains the network and renders the 180-frame, 30 FPS source video. The
@@ -48,13 +48,13 @@ The tracker never receives the later ground-truth coordinates.
 ## 3. Export and validate
 
 ```bash
-uv run export_onnx.py
+uv run examples/export_onnx.py
 ```
 
 Defaults are `outputs/demo/model.pt` → `outputs/demo/model.onnx`. For other paths:
 
 ```bash
-uv run export_onnx.py --checkpoint outputs/demo/model.pt --output outputs/export2/model.onnx
+uv run examples/export_onnx.py --checkpoint outputs/demo/model.pt --output outputs/export2/model.onnx
 ```
 
 The exporter refuses to overwrite a model. It writes the final file only after
@@ -95,7 +95,7 @@ model against ONNX, so the pooling replacement is checked independently.
 ## 4. Run ONNX tracking on the same video
 
 ```bash
-uv run onnx_demo.py
+uv run examples/onnx_demo.py
 xdg-open outputs/onnx_demo/tracked.mp4
 ```
 
@@ -104,13 +104,13 @@ The default CUDA run reads `outputs/demo/input.mp4`, takes initial points from
 source frame count, dimensions, and playback FPS. Full arguments:
 
 ```bash
-uv run onnx_demo.py --model outputs/demo/model.onnx --video outputs/demo/input.mp4 --reference outputs/demo/tracks.csv --output outputs/onnx_run2 --device cuda
+uv run examples/onnx_demo.py --model outputs/demo/model.onnx --video outputs/demo/input.mp4 --reference outputs/demo/tracks.csv --output outputs/onnx_run2 --device cuda
 ```
 
 CPU execution is explicit:
 
 ```bash
-uv run onnx_demo.py --device cpu --output outputs/onnx_cpu
+uv run examples/onnx_demo.py --device cpu --output outputs/onnx_cpu
 ```
 
 Choose a new output directory each time. Outputs include `tracked.mp4`,

@@ -9,7 +9,7 @@ import cv2
 import numpy as np
 import onnxruntime as ort
 
-from tracking_io import PATCH, SOURCE, POINTS, export
+from .tracking_io import PATCH, SOURCE, POINTS, export
 
 
 def bilinear(images, x, y):

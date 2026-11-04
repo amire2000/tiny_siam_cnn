@@ -30,8 +30,8 @@ The existing ONNX dependencies provide the required API:
 Create the trained checkpoint and FP32 ONNX model if they do not exist:
 
 ```bash
-uv run demo.py
-uv run export_onnx.py
+uv run examples/demo.py
+uv run examples/export_onnx.py
 ```
 
 The input to quantization is `outputs/demo/model.onnx`. Keep the original file;
@@ -92,7 +92,7 @@ The current `onnx_demo.py` accepts an ONNX path, so use the INT8 model with the
 CPU provider and a new output directory:
 
 ```bash
-uv run onnx_demo.py \
+uv run examples/onnx_demo.py \
   --model outputs/demo/model.int8.onnx \
   --video outputs/demo/input.mp4 \
   --reference outputs/demo/tracks.csv \

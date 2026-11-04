@@ -1,3 +1,7 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "tiny-siam-cnn"
 version = "0.1.0"
@@ -8,7 +12,7 @@ dependencies = [
     "onnx>=1.18,<2",
     "onnxruntime-gpu>=1.21,<2",
     "onnxscript>=0.3,<1",
-    "opencv-python-headless>=4.10,<5",
+    "opencv-python>=4.10,<5",
     "torch>=2.7,<3",
 ]
 
@@ -19,3 +23,6 @@ torch = { index = "pytorch-cu128" }
 name = "pytorch-cu128"
 url = "https://download.pytorch.org/whl/cu128"
 explicit = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tiny_siam_cnn"]
